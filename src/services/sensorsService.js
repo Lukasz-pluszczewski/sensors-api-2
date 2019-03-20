@@ -50,17 +50,29 @@ const sensorsService = ({ db }) => {
         sensorsServiceInstance.getSensorData('humidity-1', start, end),
         sensorsServiceInstance.getSensorData('temperature-2', start, end),
         sensorsServiceInstance.getSensorData('humidity-2', start, end),
+        sensorsServiceInstance.getSensorData('temperature-3', start, end),
+        sensorsServiceInstance.getSensorData('humidity-3', start, end),
+        sensorsServiceInstance.getSensorData('temperature-4', start, end),
+        sensorsServiceInstance.getSensorData('humidity-4', start, end),
       ])
         .then(([
           temperature,
           humidity,
           temperature2,
           humidity2,
+          temperature3,
+          humidity3,
+          temperature4,
+          humidity4,
         ]) => ({
           temperature,
           humidity,
           temperature2,
           humidity2,
+          temperature3,
+          humidity3,
+          temperature4,
+          humidity4,
         }));
     },
     saveSensorData: (key, value) => {
