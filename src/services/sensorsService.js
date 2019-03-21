@@ -1,9 +1,8 @@
 import axios from 'axios';
 import _ from 'lodash';
 import { insert, find } from 'services/mongoDatabaseService';
+import isValidDate from '../helpers/isValidDate';
 import config from '../config';
-
-const isValidDate = date => (date instanceof Date && !isNaN(date));
 
 const sensorsService = ({ db }) => {
   console.log('Creating sensors service');
@@ -25,7 +24,6 @@ const sensorsService = ({ db }) => {
       axiosInstance.get('/sensor')
         .then(response => {
           // handle success
-          console.log('Sensors response', response.data);
 
           if (response.data.isValid) {
             sensorsServiceInstance.saveSensorData('temperature-1', response.data.temperature)
