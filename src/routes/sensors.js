@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import checkPassword from '../middleware/checkPassword';
 import config from '../config';
 
@@ -20,13 +21,16 @@ const sensorsRoutes = [
     handlers: {
       post: [
         ({ req, res, next, get, apiKeys }) => {
-          const keyIndex = apiKeys.indexOf(get('api-key'));
+          const apiKey = get('api-key');
 
-          if (keyIndex < 0) {
+          if (!apiKey || !_.has(apiKeys, apiKey)) {
+            console.log('Api key not found', { apiKey, apiKeys });
             return {
               status: 401,
             };
           }
+
+          const keyIndex = apiKeys[apiKey]
 
           res.locals.keyIndex = keyIndex;
           next();
